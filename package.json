@@ -3,10 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "npx playwright test",
-    "test:ui-mode": "npx playwright test --ui",
-    "test:report-list": "npx playwright test --reporter=list"
+    "test:uimode": "npx playwright test --ui",
+    "test:reportlist": "npx playwright test --reporter=list",
+    "test:traceon": "npx playwright test --trace on",
+    "test:smoke": "npx playwright test --grep @Smoke",
+    "test:regression": "npx playwright test --grep @Regression"
   },
   "keywords": [],
   "author": "",
