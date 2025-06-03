@@ -52,4 +52,11 @@ export class ToDoTaskPage {
   async enterSearchInputField(task: string) {
     await this.searchInputField.fill(task);
   }
+
+  async renderErrorMessageTooManyChar(error: string) {
+    await expect(this.notificationMessage).toHaveText(error);
+  }
+  async renderErrorMessageAlreadyExist(task: string) {
+    return `Error: You already have ${task} in your todo list.`;
+  }
 }

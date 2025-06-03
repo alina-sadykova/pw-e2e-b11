@@ -76,19 +76,20 @@ test.describe("", () => {
       TodoTaskData.taskEmptyMessage
     );
     await todoTaskPage.inputField.fill(
-      "Make a list of groceries, go to the store, buy groceries, bring them home and prep for dinner"
+      "Make a list of groceries, go to the store, and so on"
     );
     await todoTaskPage.addButton.click();
-    await expect(todoTaskPage.notificationMessage).toHaveText(
-      TodoTaskData.errorrMessageTooManyCha
+
+    await todoTaskPage.renderErrorMessageTooManyChar(
+      TodoTaskData.errorrMessageTooManyChar
     );
 
     await todoTaskPage.enterandValidateNewTodo(TodoTaskData.todoList[0]);
+
     await expect(todoTaskPage.addedTodoContainer).toHaveCount(1);
 
     await todoTaskPage.enterandValidateNewTodo(TodoTaskData.todoList[0]);
-    await expect(todoTaskPage.notificationMessage).toHaveText(
-      TodoTaskData.getErrorMessageAlreadyExist(TodoTaskData.todoList[0])
-    );
+
+    await todoTaskPage.renderErrorMessageAlreadyExist(TodoTaskData.todoList[0]);
   });
 });

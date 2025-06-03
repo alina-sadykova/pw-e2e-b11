@@ -12,8 +12,5 @@ export const TodoTaskData = {
     "Study Playwright",
     "Pack lunch",
   ],
-  errorrMessageTooManyCha: "Error: Todo cannot be more than 30 characters!",
-  getErrorMessageAlreadyExist(task: string): string {
-    return `Error: You already have ${task} in your todo list.`;
-  },
+  errorrMessageTooManyChar: "Error: Todo cannot be more than 30 characters!",
 };
