@@ -1,0 +1,17 @@
+Element states
+
+Visible
+Enabled
+Disabled
+Hidden
+Checked
+Unchecked
+Selected
+Required
+
+
+
+Negate all the above
+
+
+Playwright allows Visual Regression Testing and Snapshot Testing
