@@ -39,6 +39,7 @@ test.describe("", () => {
       await todoTaskPage.enterandValidateNewTodo(task);
     }
     const displayedTodos = await todoTaskPage.addedTodo.allTextContents();
+
     // validate added tasks match displayed tasks
     expect(todoList).toEqual(displayedTodos);
 
@@ -60,6 +61,7 @@ test.describe("", () => {
       await todoTaskPage.enterandValidateNewTodo(task);
     }
     const displayedTodos = await todoTaskPage.addedTodo.allTextContents();
+
     // validate added tasks match displayed tasks
     expect(todoList).toEqual(displayedTodos);
 

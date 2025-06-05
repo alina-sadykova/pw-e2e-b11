@@ -14,7 +14,7 @@ export class ToDoTaskPage {
   removeCompletedTodoButton: Locator;
   notificationMessage: Locator;
 
-  constructor(private page: Page) {
+  constructor(readonly page: Page) {
     this.todoTaskModal = this.page.locator(".section");
     this.todoTaskheader = this.page.locator(".panel-heading");
     this.inputField = this.page.locator("#input-add");
