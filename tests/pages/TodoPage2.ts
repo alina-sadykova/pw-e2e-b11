@@ -1,6 +1,6 @@
 import { type Locator, type Page } from "@playwright/test";
 
-export class ToDoPage {
+export class ToDoPage2 {
   readonly page: Page;
   readonly todoAppModal: Locator;
   readonly todoAppheading: Locator;

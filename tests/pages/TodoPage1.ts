@@ -1,6 +1,6 @@
 import { Locator, Page, expect } from "@playwright/test";
 
-export class ToDoTaskPage {
+export class ToDoPage1 {
   todoTaskModal: Locator;
   todoTaskheader: Locator;
   inputField: Locator;

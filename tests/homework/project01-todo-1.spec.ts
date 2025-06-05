@@ -1,14 +1,14 @@
 import { expect, test } from "@playwright/test";
 
-import { ToDoTaskPage } from "../pages/TodoTaskPage";
+import { ToDoPage1 } from "../pages/TodoPage1";
 import { TodoTaskData } from "../data/toDoTaskData";
 
-let todoTaskPage: ToDoTaskPage;
+let todoTaskPage: ToDoPage1;
 
 test.describe("Todo Page", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("https://www.techglobal-training.com/frontend/todo-list");
-    todoTaskPage = new ToDoTaskPage(page);
+    todoTaskPage = new ToDoPage1(page);
   });
 
   test("Test Case 01 - Todo-App Modal Verification", async () => {

@@ -1,12 +1,12 @@
 import { expect, test } from "@playwright/test";
 
-import { ToDoPage } from "../pages/TodoPage";
+import { ToDoPage2 } from "../pages/TodoPage2";
 import { TodoTaskData } from "../data/toDoTaskData";
 
-let todoPage: ToDoPage;
+let todoPage: ToDoPage2;
 test.describe("ToDo Page", () => {
   test.beforeEach(async ({ page }) => {
-    todoPage = new ToDoPage(page);
+    todoPage = new ToDoPage2(page);
     await page.goto("https://www.techglobal-training.com/frontend/todo-list");
   });
 
