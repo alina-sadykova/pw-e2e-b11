@@ -5,7 +5,7 @@ import { TodoTaskData } from "../data/toDoTaskData";
 
 let todoTaskPage: ToDoTaskPage;
 
-test.describe("", () => {
+test.describe("Todo Page", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("https://www.techglobal-training.com/frontend/todo-list");
     todoTaskPage = new ToDoTaskPage(page);
