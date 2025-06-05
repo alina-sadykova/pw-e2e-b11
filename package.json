@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "test": "npx playwright test",
     "test:uimode": "npx playwright test --ui",
@@ -17,6 +16,7 @@
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "^1.52.0",
-    "@types/node": "^22.15.23"
+    "@types/node": "^22.15.23",
+    "dotenv": "^16.5.0"
   }
 }
