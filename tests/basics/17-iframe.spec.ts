@@ -13,6 +13,6 @@ test("Iframe", async ({ page }) => {
   await iframeForm.locator("#submit").click();
 
   await expect(page.locator("#result")).toHaveText(
-    `You entered ${fname} ${lname}`
+    `You entered: ${fname} ${lname}`
   );
 });

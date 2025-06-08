@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 
-import { BackendTestingPage } from "../pages/BackendTestingPage";
-import { FrontendTestingPage } from "../pages/FrontendTestingPage";
+import { BackendTestingPage } from "../../pages/BackendTestingPage";
+import { FrontendTestingPage } from "../../pages/FrontendTestingPage";
 
 const frontendPracticePageTexts: string[] = [
   "HTML Elements",
