@@ -2,6 +2,11 @@ import { expect, test } from "@playwright/test";
 
 import { BackendTestingPage } from "../../pages/BackendTestingPage";
 import { FrontendTestingPage } from "../../pages/FrontendTestingPage";
+import dotenv from "dotenv";
+/* path is used for CI/CDprocesses */
+import path from "path";
+
+dotenv.config({ path: path.resolve(__dirname, ".env") });
 
 const frontendPracticePageTexts: string[] = [
   "HTML Elements",
@@ -19,6 +24,12 @@ const frontendPracticePageTexts: string[] = [
 test.describe("POM Testing", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("https://www.techglobal-training.com/");
+    // 1 - Pullign URL from config file use.baseURL
+    // await page.goto("/");
+
+    // 2 - Pulling URL from env file and warpping in `` to avoid type error
+    // await page.goto(`${process.env.baseURL}`);
+    // console.log(page.url());
   });
 
   frontendPracticePageTexts.forEach((frontendPracticePageText) => {
