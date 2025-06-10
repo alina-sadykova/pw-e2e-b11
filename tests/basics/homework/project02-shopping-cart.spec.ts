@@ -96,14 +96,15 @@ test.describe("Shopping Cart Page", () => {
         );
     }
     /* Validate that the course price is added to the total price excluding the discount amount*/
-    const coursePrice = Number(
-      addedCourses[0].pricetext?.replace(/[^0-9.]/g, "")
-    );
+    const totalCoursePrice = addedCourses.reduce((total, value) => {
+      const currentPrice = Number(value.pricetext?.replace(/[^0-9.]/g, ""));
+      return total + currentPrice;
+    }, 0);
     const totalPrice = Number(
       (await shoppingCartPage.getTotalPrice())?.replace(/[^0-9.]/g, "") || "0"
     );
 
-    expect(totalPrice).toEqual(coursePrice);
+    expect(totalPrice).toEqual(totalCoursePrice);
 
     /* Click on the “Place Order” button*/
     await shoppingCartPage.clickPlaceOrderButton();
