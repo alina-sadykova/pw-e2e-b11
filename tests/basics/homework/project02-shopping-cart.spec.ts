@@ -87,6 +87,11 @@ test.describe("Shopping Cart Page", () => {
     Click on the “Place Order” button
     Validate a success message is displayed with the text “Your order has been placed.”
     Validate that the cart is empty*/
+
+    await expect(shoppingCartPage.addedCourseContainer).toHaveCount(0);
+    await shoppingCartPage.addCourseToCart(carts[0]);
+    await expect(shoppingCartPage.addedCourseContainer).toHaveCount(1);
+
     const addedCourses = await shoppingCartPage.getAddedToCartCourseDetails();
     const coursePrice = Number(
       addedCourses[0].pricetext?.replace(/[^0-9.]/g, "")
@@ -94,12 +99,6 @@ test.describe("Shopping Cart Page", () => {
     const totalPrice = Number(
       (await shoppingCartPage.getTotalPrice())?.replace(/[^0-9.]/g, "") || "0"
     );
-
-    await expect(shoppingCartPage.addedCourseContainer).toHaveCount(0);
-
-    await shoppingCartPage.addCourseToCart(carts[0]);
-
-    await expect(shoppingCartPage.addedCourseContainer).toHaveCount(1);
 
     for (let course of addedCourses) {
       await expect(course.image).toBeVisible();
@@ -112,19 +111,97 @@ test.describe("Shopping Cart Page", () => {
     }
 
     expect(totalPrice).toEqual(coursePrice);
-
     await shoppingCartPage.clickPlaceOrderButton();
-
     await expect(shoppingCartPage.successMessage).toBeVisible();
-
     await expect(shoppingCartPage.addedCourseContainer).toHaveCount(0);
   });
 
-  /* Click on the “Add to Cart” button for one of the courses
-  Click on the “Add to Cart” button for another course
-  Validate that the courses are displayed in the cart with their image, name, and discount amount if available
-  Validate that the course prices are added to the total price excluding the discount amounts
-  Click on the “Place Order” button
-  Validate a success message is displayed with the text “Your order has been placed.”
-  Validate that the cart is empty */
+  test("Test Case 04 - Add Two Courses to the Cart and Validate", async ({
+    shoppingCartPage,
+  }) => {
+    /* Click on the “Add to Cart” button for one of the courses
+    Click on the “Add to Cart” button for another course
+    Validate that the courses are displayed in the cart with their image, name, and discount amount if available
+    Validate that the course prices are added to the total price excluding the discount amounts
+    Click on the “Place Order” button
+    Validate a success message is displayed with the text “Your order has been placed.”
+    Validate that the cart is empty */
+
+    await expect(shoppingCartPage.addedCourseContainer).toHaveCount(0);
+    await shoppingCartPage.addCourseToCart(carts[0]);
+    await expect(shoppingCartPage.addedCourseContainer).toHaveCount(1);
+
+    await expect(shoppingCartPage.addedCourseContainer).toHaveCount(1);
+    await shoppingCartPage.addCourseToCart(carts[2]);
+    await expect(shoppingCartPage.addedCourseContainer).toHaveCount(2);
+
+    const addedCourses = await shoppingCartPage.getAddedToCartCourseDetails();
+    const totalCoursePrice = addedCourses.reduce((total, value) => {
+      const currentPrice = Number(value.pricetext?.replace(/[^0-9.]/g, ""));
+      return total + currentPrice;
+    }, 0);
+    const totalPrice = Number(
+      (await shoppingCartPage.getTotalPrice())?.replace(/[^0-9.]/g, "") || "0"
+    );
+
+    for (let course of addedCourses) {
+      await expect(course.image).toBeVisible();
+      await expect(course.titleLocator).toBeVisible();
+
+      if (course.discountText)
+        expect(course.discountText).toContain(
+          `(${course.discountAmount} % off)`
+        );
+    }
+
+    expect(totalPrice).toEqual(totalCoursePrice);
+    await shoppingCartPage.clickPlaceOrderButton();
+    await expect(shoppingCartPage.successMessage).toBeVisible();
+    await expect(shoppingCartPage.addedCourseContainer).toHaveCount(0);
+  });
+
+  test("Test Case 05 - Add All Three Courses to the Cart and Validate", async ({
+    shoppingCartPage,
+  }) => {
+    /* Click on the “Add to Cart” button for all three courses
+    Validate that the courses are displayed in the cart with their image, name, and discount amount if available
+    Validate that the course prices are added to the total price excluding the discount amounts
+    Click on the “Place Order” button
+    Validate a success message is displayed with the text “Your order has been placed.”
+    Validate that the cart is empty */
+
+    await expect(shoppingCartPage.addedCourseContainer).toHaveCount(0);
+
+    carts.forEach(async (cart) => {
+      await shoppingCartPage.addCourseToCart(cart);
+    });
+
+    await expect(shoppingCartPage.addedCourseContainer).toHaveCount(
+      carts.length - 1
+    );
+
+    const addedCourses = await shoppingCartPage.getAddedToCartCourseDetails();
+    const totalCoursePrice = addedCourses.reduce((total, value) => {
+      const currentPrice = Number(value.pricetext?.replace(/[^0-9.]/g, ""));
+      return total + currentPrice;
+    }, 0);
+    const totalPrice = Number(
+      (await shoppingCartPage.getTotalPrice())?.replace(/[^0-9.]/g, "") || "0"
+    );
+
+    for (let course of addedCourses) {
+      await expect(course.image).toBeVisible();
+      await expect(course.titleLocator).toBeVisible();
+
+      if (course.discountText)
+        expect(course.discountText).toContain(
+          `(${course.discountAmount} % off)`
+        );
+    }
+
+    expect(totalPrice).toEqual(totalCoursePrice);
+    await shoppingCartPage.clickPlaceOrderButton();
+    await expect(shoppingCartPage.successMessage).toBeVisible();
+    await expect(shoppingCartPage.addedCourseContainer).toHaveCount(0);
+  });
 });
