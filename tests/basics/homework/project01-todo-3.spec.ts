@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-import { TodoPage3 } from "./../pages/TodoPage3";
+import { TodoPage3 } from "../../../pages/homework/TodoPage3";
 
 test.describe("Todo project", () => {
   let todoPage: TodoPage3;

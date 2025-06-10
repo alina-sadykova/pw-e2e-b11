@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-import { ToDoPage2 } from "../pages/TodoPage2";
+import { ToDoPage2 } from "../../../pages/homework/TodoPage2";
 import { TodoTaskData } from "../data/toDoTaskData";
 
 let todoPage: ToDoPage2;

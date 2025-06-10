@@ -39,6 +39,7 @@ export class ShoppingCartPage {
   readonly addedCourseContainer: Locator;
   readonly totalPrice: Locator;
   readonly placeOrderButton: Locator;
+  readonly successMessage: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -57,6 +58,7 @@ export class ShoppingCartPage {
     this.placeOrderButton = this.page.getByRole("button", {
       name: "Place Order",
     });
+    this.successMessage = this.page.locator(".notification");
   }
 
   async clickAddButton() {
@@ -65,6 +67,10 @@ export class ShoppingCartPage {
 
   async getTotalPrice(): Promise<string | null> {
     return await this.totalPrice.textContent();
+  }
+
+  async clickPlaceOrderButton() {
+    await this.placeOrderButton.click();
   }
 
   async getCourseDetails() {
