@@ -1,6 +1,6 @@
 import { expect, test } from "../../../fixtures/ShoppingCartFixture";
 
-const carts = [
+const courses = [
   "SDET Course | Cypress Playwright",
   "Playwright Automation Testing",
   "Cypress Automation Course",
@@ -79,7 +79,7 @@ test.describe("Shopping Cart Page", () => {
   }) => {
     /* Click on the “Add to Cart” button for one of the courses*/
     await expect(shoppingCartPage.addedCourseContainer).toHaveCount(0);
-    await shoppingCartPage.addCourseToCart(carts[0]);
+    await shoppingCartPage.addCourseToCart(courses[0]);
     await expect(shoppingCartPage.addedCourseContainer).toHaveCount(1);
 
     /* Validate that the course is displayed in the cart with its image, name, and 
@@ -121,12 +121,12 @@ test.describe("Shopping Cart Page", () => {
   }) => {
     /* Click on the “Add to Cart” button for one of the courses*/
     await expect(shoppingCartPage.addedCourseContainer).toHaveCount(0);
-    await shoppingCartPage.addCourseToCart(carts[0]);
+    await shoppingCartPage.addCourseToCart(courses[0]);
     await expect(shoppingCartPage.addedCourseContainer).toHaveCount(1);
 
     /* Click on the “Add to Cart” button for another course*/
     await expect(shoppingCartPage.addedCourseContainer).toHaveCount(1);
-    await shoppingCartPage.addCourseToCart(carts[2]);
+    await shoppingCartPage.addCourseToCart(courses[2]);
     await expect(shoppingCartPage.addedCourseContainer).toHaveCount(2);
 
     /* Validate that the courses are displayed in the cart with their image, name, and 
@@ -167,13 +167,13 @@ test.describe("Shopping Cart Page", () => {
     shoppingCartPage,
   }) => {
     /* Click on the “Add to Cart” button for all three courses*/
-    carts.forEach(async (cart) => {
-      await shoppingCartPage.addCourseToCart(cart);
+    courses.forEach(async (course) => {
+      await shoppingCartPage.addCourseToCart(course);
     });
 
     /* validate all three courses are present*/
     await expect(shoppingCartPage.addedCourseContainer).toHaveCount(
-      carts.length - 1
+      courses.length - 1
     );
 
     /* Validate that the courses are displayed in the cart with their image, name, and discount amount if available*/
