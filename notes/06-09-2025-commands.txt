@@ -1,0 +1,28 @@
+
+npm init playwright@latest
+npx playwright install
+
+
+
+npx playwright test
+npx playwright codegen
+npx playwright specName 
+npx playwright show-report
+
+
+npx playwright test
+
+--ui
+--headless
+--headed
+--browser="firefox"
+--project="ui-system-tests"
+--debug
+--update-snapshots
+--grep "tagName"
+--reporter=list
+--workers
+--trace on
+
+
+LATER, you can have these in custom package.json scripts

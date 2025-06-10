@@ -1,0 +1,20 @@
+Playwright Framework Part 1
+
+1. Create a new folder and name it properly
+	smartbear-app-e2e-tests-pw11
+
+2. Start an NPM project with playwright
+	npm init playwright@latest
+
+	Select default details
+
+3. Install Playwright Browsers
+	npx playwright install
+
+
+4. Install dotenv dependency for setting up environment variables
+	npm i dotenv -D
+
+	- create .env file
+	- store your key-value pairs/properties
+	- enable dotenv in config file
