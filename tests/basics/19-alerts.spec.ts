@@ -29,7 +29,7 @@ test.describe("Alerts", () => {
       expect(dialog.message()).toBe(
         "You are on TechGlobal Training application."
       );
-
+      await page.pause();
       await dialog.accept(); // accept() for warning alert only
     });
 

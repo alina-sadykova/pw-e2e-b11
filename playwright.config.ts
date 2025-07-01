@@ -94,6 +94,13 @@ export default defineConfig({
         headless: false,
       },
     },
+    {
+      name: "DB Automation",
+      testDir: "./tests/db-automation",
+      use: {
+        ...devices["Desktop Chrome"],
+      },
+    },
 
     // {
     //   name: "firefox",

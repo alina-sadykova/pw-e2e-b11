@@ -11,6 +11,7 @@ export class BackendTestingPage extends BasePage {
   readonly addButton: Locator;
   readonly successMessage: Locator;
   readonly apiDocumentationLink: Locator;
+  readonly deleteAllButton: Locator;
 
   constructor(page: Page) {
     super(page);
@@ -23,6 +24,9 @@ export class BackendTestingPage extends BasePage {
     this.successMessage = this.page.getByText("Successfully added");
     this.apiDocumentationLink = this.page.getByRole("link", {
       name: "Check out API Documentation",
+    });
+    this.deleteAllButton = this.page.getByRole("button", {
+      name: "DELETE ALL",
     });
   }
 
