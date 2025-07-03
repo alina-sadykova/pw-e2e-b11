@@ -1,5 +1,6 @@
 import { expect, test } from "@playwright/test";
 
+import AxeBuilder from "@axe-core/playwright"; // 1
 import { BackendTestingPage } from "../../pages/BackendTestingPage";
 import { executeQuery } from "../../utils/dbUtils";
 import { faker } from "@faker-js/faker";
@@ -62,3 +63,21 @@ test.describe("UI - DB E2E Tests", () => {
     expect(result.length).toBe(2);
   });
 });
+
+// // ACCESSIBILITY TESTING: INSTALL THIRD PARTY AXE CORE FOR PLAYWRIGHT, AND RUN THE BELOW FUNCTION:
+// test.only("Home page accessibilit check", async ({ page }) => {
+//   await page.goto("https://www.techglobal-training.com/");
+
+//   const accessibilityScanResults = await new AxeBuilder({ page }).analyze(); // 4
+
+//   // convert into more minimal shape to render only what we need to see:
+//   const results = accessibilityScanResults.violations.map((x) => {
+//     return {
+//       id: x.id,
+//       impact: x.impact,
+//       description: x.description,
+//     };
+//   });
+//   console.log(results);
+//   // expect(accessibilityScanResults.violations).toEqual([]); // 5
+// });

@@ -1,0 +1,29 @@
+E2E Testing:
+	1. User flows -> from beginning to end
+	2. UI-API-DB layers testing -> System Tests, Integration Tests
+UI-API-DB Testing
+How do you conduct UI testing?
+How do you conduct API testing?
+How do you conduct DB testing?
+How do you conduct E2E-Integration testing?
+How do you conduct Component testing?
+How do you conduct Unit testing?
+Search Jest tool for Unit and Component testing!
+NUnit, XUnit for C#
+JUnit, TestNG for Java
+Pytest for Python
+How do you conduct Performance testing? - Read couple articles to learn more about it
+	JMeter, BlazeMeter, LoadRunner, NeoLoad
+How do you conduct Accessibility testing?
+	-Learn it
+	Manually: we run it using dev tools
+	Automation: Playwright has built-in support
+How do you conduct Mobile testing? Read few articles
+Appium: client/server tool support multiple languages with Selenium
+Cloud technologies: BrowserStack, Saucelabs, Perfecto (priced)
+	web application: only runs with browsers
+	mobile (native) application: only runs on IOS (AppStore) or Android (PlayStore) phones
+		IOS: ipa (simulators)
+		Android: apk (emulators)
+	hybrid application: web and mobile
+How do you conduct Security testing?
