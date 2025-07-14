@@ -1,7 +1,7 @@
-import oracledb from "oracledb";
+import oracledb, { outFormat } from "oracledb";
 
 export async function executeQuery(query: string) {
-  let connection: oracledb.Connection | undefined;
+  let connection;
   try {
     connection = await oracledb.getConnection({
       user: process.env.DB_USERNAME,
@@ -9,13 +9,18 @@ export async function executeQuery(query: string) {
       connectString: process.env.DB_CONNECTION_STRING,
     });
 
-    const result = await connection.execute(query);
+    const result = await connection.execute(
+      query,
+      [], // binding parameters
+      {
+        outFormat: oracledb.OUT_FORMAT_OBJECT, // <-- This will make sure that rows now returned as key value pairs (Object)
+      }
+    );
+
     return result.rows;
-  } catch (error) {
-    throw error;
+  } catch (err) {
+    throw err;
   } finally {
-    if (connection) {
-      await connection.close();
-    }
+    await connection.close();
   }
 }

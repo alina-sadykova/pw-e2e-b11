@@ -20,7 +20,7 @@ export default defineConfig({
   testDir: "./tests",
   timeout: 10 * 1000,
   /* Run tests in files in parallel */
-  fullyParallel: false,
+  fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
@@ -43,12 +43,21 @@ export default defineConfig({
     // baseURL: process.env.baseURL, // "https://www.techglobal-training.com"
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: "on-first-retry",
+    trace: "retain-on-failure",
     navigationTimeout: 30000,
   },
 
   /* Configure projects for major browsers */
   projects: [
+    // one default configuration:
+    {
+      name: "Regression",
+      use: {
+        ...devices["Desktop Chrome"],
+        viewport: { width: 1920, height: 1080 },
+      },
+    },
+    // configuration for individual projects:
     {
       name: "Basics",
       testDir: "./tests/basics",
@@ -101,6 +110,13 @@ export default defineConfig({
         ...devices["Desktop Chrome"],
       },
     },
+    // {
+    //   name: "API Automation",
+    //   testDir: "./tests/api",
+    //   use: {
+    //     ...devices["Desktop Chrome"],
+    //   },
+    // },
 
     // {
     //   name: "firefox",
